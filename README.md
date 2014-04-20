@@ -7,6 +7,6 @@ Another todo app.
 ```shell
 git clone git@github.com:jehoshua02/todo.git
 cd todo
-ember init
+yes n | ember init
 ember server
 ```
