@@ -6,17 +6,12 @@ Another todo app.
 
 + node v0.10.26
 + npm 1.4.3
-+ ember-cli 0.0.23
++ ember-cli 0.0.37
 
 Note: other versions will probably work but these are safe bet.
 
 
 ## Getting Started
 
-```shell
-git clone git@github.com:jehoshua02/todo.git
-cd todo
-yes n | ember init
-ember server
-```
+If working on the ember app, look at [`ember/README.md`](https://github.com/jehoshua02/todo/blob/master/ember/README.md).
 
