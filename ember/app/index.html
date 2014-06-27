@@ -9,15 +9,18 @@
 
     {{BASE_TAG}}
 
+    <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/todo.css">
   </head>
   <body>
     <script>
-      window.ENV = {{ENV}};
+      window.TodoENV = {{ENV}};
+      window.EmberENV = window.TodoENV.EmberENV;
     </script>
+    <script src="assets/vendor.js"></script>
     <script src="assets/todo.js"></script>
     <script>
-      window.Todo = require('todo/app')['default'].create(ENV.APP);
+      window.Todo = require('todo/app')['default'].create(TodoENV.APP);
     </script>
   </body>
 </html>
