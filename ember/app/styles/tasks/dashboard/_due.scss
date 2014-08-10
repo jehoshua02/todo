@@ -1,0 +1,21 @@
+.dashboard {
+  .due {
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .due .when {
+    text-transform: capitalize;
+  }
+
+  .due .count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    line-height: 50px;
+    background-color: lighten($list-group-border, 5%);
+    text-align: center;
+    font-size: 30px;
+  }
+}

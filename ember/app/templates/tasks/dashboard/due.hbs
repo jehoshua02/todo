@@ -1,0 +1,29 @@
+<div class="due panel panel-primary">
+  {{link-to 'Due' 'tasks.due' class='panel-heading' tagName='div'}}
+  <ul class="list-group">
+    {{#link-to 'tasks.past-due' tagName='li' class='list-group-item'}}
+      <span class="when">past</span>
+      <span class="count">0</span>
+    {{/link-to}}
+    {{#link-to 'tasks.due-today' tagName='li' class='list-group-item'}}
+      <span class="when">today</span>
+      <span class="count">5</span>
+    {{/link-to}}
+    {{#link-to 'tasks.due-tomorrow' tagName='li' class='list-group-item'}}
+      <span class="when">tomorrow</span>
+      <span class="count">10</span>
+    {{/link-to}}
+    {{#link-to 'tasks.due-this-week' tagName='li' class='list-group-item'}}
+      <span class="when">this week</span>
+      <span class="count">15</span>
+    {{/link-to}}
+    {{#link-to 'tasks.due-next-week' tagName='li' class='list-group-item'}}
+      <span class="when">next week</span>
+      <span class="count">8</span>
+    {{/link-to}}
+    {{#link-to 'tasks.due-this-month' tagName='li' class='list-group-item'}}
+      <span class="when">this month</span>
+      <span class="count">1120</span>
+    {{/link-to}}
+  </ul>
+</div>
