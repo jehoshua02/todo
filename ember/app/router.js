@@ -5,8 +5,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('tasks', { path: '/' }, function () {
-    this.route('dashboard', { path: '/' });
+  this.resource('tasks', {path: '/'}, function () {
+    this.route('dashboard', {path: '/'});
     this.route('due');
     this.route('past-due');
     this.route('due-today');
