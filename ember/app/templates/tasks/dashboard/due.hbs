@@ -1,27 +1,27 @@
 <div class="due panel panel-primary">
-  {{link-to 'Due' 'tasks.due' class='panel-heading' tagName='div'}}
+  {{link-to 'Due' 'tasks' (query-params due=true) class='panel-heading' tagName='div'}}
   <ul class="list-group">
-    {{#link-to 'tasks.past-due' tagName='li' class='list-group-item'}}
+    {{#link-to 'tasks.due' 'past' tagName='li' class='list-group-item'}}
       <span class="when">past</span>
       <span class="count">{{counts.pastDue}}</span>
     {{/link-to}}
-    {{#link-to 'tasks.due-today' tagName='li' class='list-group-item'}}
+    {{#link-to 'tasks.due' 'today' tagName='li' class='list-group-item'}}
       <span class="when">today</span>
       <span class="count">{{counts.dueToday}}</span>
     {{/link-to}}
-    {{#link-to 'tasks.due-tomorrow' tagName='li' class='list-group-item'}}
+    {{#link-to 'tasks.due' 'tomorrow' tagName='li' class='list-group-item'}}
       <span class="when">tomorrow</span>
       <span class="count">{{counts.dueTomorrow}}</span>
     {{/link-to}}
-    {{#link-to 'tasks.due-this-week' tagName='li' class='list-group-item'}}
+    {{#link-to 'tasks.due' 'this-week' tagName='li' class='list-group-item'}}
       <span class="when">this week</span>
       <span class="count">{{counts.dueThisWeek}}</span>
     {{/link-to}}
-    {{#link-to 'tasks.due-next-week' tagName='li' class='list-group-item'}}
+    {{#link-to 'tasks.due' 'next-week' tagName='li' class='list-group-item'}}
       <span class="when">next week</span>
       <span class="count">{{counts.dueNextWeek}}</span>
     {{/link-to}}
-    {{#link-to 'tasks.due-this-month' tagName='li' class='list-group-item'}}
+    {{#link-to 'tasks.due' 'this-month' tagName='li' class='list-group-item'}}
       <span class="when">this month</span>
       <span class="count">{{counts.dueThisMonth}}</span>
     {{/link-to}}
