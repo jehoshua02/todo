@@ -9,6 +9,7 @@ Router.map(function() {
     this.route('dashboard', {path: '/dashboard'});
     this.route('due', {path: '/due/:when'});
   });
+  this.route('task', {path: '/tasks/:id'});
 });
 
 export default Router;

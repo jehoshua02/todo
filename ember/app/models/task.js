@@ -6,5 +6,44 @@ export default DS.Model.extend({
 
   momentDue: function () {
     return moment(this.get('due'));
-  }.property('due')
+  }.property('due'),
+
+  isPastDue: function () {
+    var due = this.get('momentDue');
+    return due.isBefore(Todo.now, 'day');
+  }.property('momentDue', 'Todo.now'),
+
+  isDueToday: function () {
+    var due = this.get('momentDue');
+    return due.isSame(Todo.now, 'day');
+  }.property('momentDue', 'Todo.now'),
+
+  isDueTomorrow: function () {
+    var due = this.get('momentDue');
+    var tomorrow = Todo.now.clone().add(1, 'days');
+    return due.isSame(tomorrow, 'day');
+  }.property('momentDue', 'Todo.now'),
+
+  isDueThisWeek: function () {
+    var due = this.get('momentDue');
+    return due.isSame(Todo.now, 'week');
+  }.property('momentDue', 'Todo.now'),
+
+  isDueNextWeek: function () {
+    var due = this.get('momentDue');
+    var nextWeek = Todo.now.clone().add(1, 'weeks');
+    return due.isSame(nextWeek, 'day');
+  }.property('momentDue', 'Todo.now'),
+
+  isDueThisMonth: function () {
+    var due = this.get('momentDue');
+    return due.isSame(Todo.now, 'month');
+  }.property('momentDue', 'Todo.now'),
+
+  isDueNextMonth: function () {
+    var due = this.get('momentDue');
+    var nextMonth = Todo.now.clone().add(1, 'months');
+    return due.isSame(nextMonth, 'month');
+  }.property('momentDue', 'Todo.now'),
+
 });

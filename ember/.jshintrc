@@ -2,7 +2,9 @@
   "predef": {
     "document": true,
     "window": true,
-    "TodoENV": true
+    "TodoENV": true,
+    "moment": true,
+    "Todo": true
   },
   "browser" : true,
   "boss" : true,

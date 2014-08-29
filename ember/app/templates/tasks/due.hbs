@@ -1,0 +1,9 @@
+<div class="task-list list-group">
+  {{#each itemController='task'}}
+    {{#link-to 'task' this tagName='div' class='task list-group-item'}}
+      <span class="done"><i class="fa fa-check"></i></span>
+      <p class="title">{{title}}</p>
+      <p class="due">{{due}}</p>
+    {{/link-to}}
+  {{/each}}
+</div>

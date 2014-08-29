@@ -19,4 +19,16 @@ var app = new EmberApp();
 
 app.import('vendor/moment/moment.js');
 
-module.exports = app.toTree();
+var tree = app.toTree();
+
+tree = (function mergeFontAwesomeTree(tree) {
+  var mergeTrees = require('broccoli-merge-trees');
+  var pickFiles = require('broccoli-static-compiler');
+  var fontawesome = pickFiles('vendor/fontawesome/fonts', {
+    srcDir: '/',
+    destDir: '/fonts'
+  });
+  return mergeTrees([tree, fontawesome]);
+})(tree);
+
+module.exports = tree;

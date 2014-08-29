@@ -3,27 +3,27 @@
   <ul class="list-group">
     {{#link-to 'tasks.due' 'past' tagName='li' class='list-group-item'}}
       <span class="when">past</span>
-      <span class="count">{{counts.pastDue}}</span>
+      <span class="count">{{pastDue.length}}</span>
     {{/link-to}}
     {{#link-to 'tasks.due' 'today' tagName='li' class='list-group-item'}}
       <span class="when">today</span>
-      <span class="count">{{counts.dueToday}}</span>
+      <span class="count">{{dueToday.length}}</span>
     {{/link-to}}
     {{#link-to 'tasks.due' 'tomorrow' tagName='li' class='list-group-item'}}
       <span class="when">tomorrow</span>
-      <span class="count">{{counts.dueTomorrow}}</span>
+      <span class="count">{{dueTomorrow.length}}</span>
     {{/link-to}}
     {{#link-to 'tasks.due' 'this-week' tagName='li' class='list-group-item'}}
       <span class="when">this week</span>
-      <span class="count">{{counts.dueThisWeek}}</span>
+      <span class="count">{{dueThisWeek.length}}</span>
     {{/link-to}}
     {{#link-to 'tasks.due' 'next-week' tagName='li' class='list-group-item'}}
       <span class="when">next week</span>
-      <span class="count">{{counts.dueNextWeek}}</span>
+      <span class="count">{{dueNextWeek.length}}</span>
     {{/link-to}}
     {{#link-to 'tasks.due' 'this-month' tagName='li' class='list-group-item'}}
       <span class="when">this month</span>
-      <span class="count">{{counts.dueThisMonth}}</span>
+      <span class="count">{{dueThisMonth.length}}</span>
     {{/link-to}}
   </ul>
 </div>
