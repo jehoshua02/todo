@@ -2,7 +2,7 @@ import Ember from 'ember';
 import TasksController from 'todo/controllers/tasks';
 
 export default TasksController.extend({
-  needs:['application'],
+  due: Ember.computed.filterBy('model', 'hasDueDate'),
   pastDue: Ember.computed.filterBy('model', 'isPastDue'),
   dueToday: Ember.computed.filterBy('model', 'isDueToday'),
   dueTomorrow: Ember.computed.filterBy('model', 'isDueTomorrow'),

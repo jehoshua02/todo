@@ -1,28 +1,102 @@
+var moment = require('moment');
+moment.locale('en', {
+  week: {
+    dow: 1
+  }
+});
+
+var config = {
+  now: '2014-08-27',
+  generate: [
+    // tasks with due dates: 15
+    'pastDue', // 3
+    'dueToday', // 2
+    'dueTomorrow', // 2
+    'dueThisWeek', // 9
+    'dueNextWeek', // 3
+    'dueThisMonth', // 10
+    'dueNextMonth' // 5
+  ]
+};
+
+var now = function () {
+  return moment(config.now);
+};
+
+var generate = {};
+
+generate.tasks = function () {
+  var id = 0;
+  var tasks = [];
+  var functions = config.generate;
+  for (var i = 0; i < functions.length; i++) {
+    tasks.push.apply(tasks, this[functions[i]]());
+  }
+  tasks.map(function (task) {
+    task.id = id++;
+  });
+  return tasks;
+};
+
+generate.pastDue = function () {
+  return [
+    { title: 'Task due last week. (Monday is 1st day of week.)', due: now().startOf('week').subtract(1, 'days') },
+    { title: 'Task due first day of week.', due: now().startOf('week') },
+    { title: 'Task due end of yesterday.', due: now().subtract(1, 'day').endOf('day') }
+  ];
+};
+
+generate.dueToday = function () {
+  return [
+    { title: 'Task due start of today.', due: now().startOf('day') },
+    { title: 'Task due end of day.', due: now().endOf('day') }
+  ];
+};
+
+generate.dueTomorrow = function () {
+  return [
+    { title: 'Task due start of tomorrow.', due: now().add(1, 'days').startOf('day') },
+    { title: 'Task due end of tomorrow.', due: now().add(1, 'days').endOf('day') }
+  ];
+};
+
+generate.dueThisWeek = function () {
+  return [
+    { title: 'Task due start of day after tomorrow.', due: now().add(2, 'days').startOf('day') },
+    { title: 'Task due end of week.', due: now().endOf('week') }
+  ];
+};
+
+generate.dueNextWeek = function () {
+  return [
+    { title: 'Task due start of next week.', due: now().add(1, 'weeks').startOf('week') },
+    { title: 'Task due end of next week.', due: now().add(1, 'weeks').endOf('week') }
+  ];
+};
+
+generate.dueThisMonth = function () {
+  return [
+    { title: 'Task due start of week after next week.', due: now().add(2, 'weeks').startOf('week') },
+    { title: 'Task due end of month.', due: now().endOf('month') }
+  ];
+};
+
+generate.dueNextMonth = function () {
+  return [
+    { title: 'Task due start of next month.', due: now().add(1, 'months').startOf('month') },
+    { title: 'Task due end of next month.', due: now().add(1, 'months').endOf('month') }
+  ];
+};
+
+
 module.exports = function(app) {
   var express = require('express');
   var tasksRouter = express.Router();
-  var moment = require('moment');
-  var now = moment().endOf('day');
 
   tasksRouter.get('/', function(req, res) {
-    res.send({tasks:[
-      {id: 1, title: 'buy bananas', due: now.clone().subtract(3, 'days')},
-      {id: 2, title: 'peel banana', due: now.clone().subtract(2, 'days')},
-      {id: 3, title: 'eat banana', due: now.clone()},
-      {id: 4, title: 'throw away banana peel', due: now.clone().add(1, 'days')},
-      {id: 5, title: 'peel another banana', due: now.clone().add(1, 'days')},
-      {id: 6, title: 'eat another banana', due: now.clone().add(3, 'days')},
-      {id: 7, title: 'throw away another banana peel', due: now.clone().add(4, 'days')},
-      {id: 8, title: 'peel another banana', due: now.clone().add(5, 'days')},
-      {id: 9, title: 'eat another banana', due: now.clone().add(6, 'days')},
-      {id: 10, title: 'throw away another banana peel', due: now.clone().add(7, 'days')},
-      {id: 11, title: 'peel another banana', due: now.clone().add(13, 'days')},
-      {id: 12, title: 'eat another banana', due: now.clone().add(14, 'days')},
-      {id: 13, title: 'throw away another banana peel', due: now.clone().add(1, 'months').subtract(1, 'days')},
-      {id: 14, title: 'peel another banana', due: now.clone().add(1, 'months')},
-      {id: 15, title: 'eat another banana', due: now.clone().add(1, 'months')},
-      {id: 16, title: 'throw away another banana peel', due: now.clone().add(1, 'months')},
-    ]});
+    res.send({
+      tasks: generate.tasks()
+    });
   });
   app.use('/api/tasks', tasksRouter);
 };

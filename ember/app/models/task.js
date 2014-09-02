@@ -8,6 +8,10 @@ export default DS.Model.extend({
     return moment(this.get('due'));
   }.property('due'),
 
+  hasDueDate: function () {
+    return this.get('due') !== null;
+  }.property('due'),
+
   isPastDue: function () {
     var due = this.get('momentDue');
     return due.isBefore(Todo.now, 'day');
@@ -26,13 +30,16 @@ export default DS.Model.extend({
 
   isDueThisWeek: function () {
     var due = this.get('momentDue');
-    return due.isSame(Todo.now, 'week');
+    var weekStart = Todo.now.clone().startOf('week');
+    var weekEnd = Todo.now.clone().endOf('week');
+    return due.isBetween(weekStart, weekEnd, 'day');
   }.property('momentDue', 'Todo.now'),
 
   isDueNextWeek: function () {
     var due = this.get('momentDue');
-    var nextWeek = Todo.now.clone().add(1, 'weeks');
-    return due.isSame(nextWeek, 'day');
+    var nextWeekStart = Todo.now.clone().startOf('week').add(1, 'weeks');
+    var nextWeekEnd = Todo.now.clone().endOf('week').add(1, 'weeks');
+    return due.isBetween(nextWeekStart, nextWeekEnd, 'day');
   }.property('momentDue', 'Todo.now'),
 
   isDueThisMonth: function () {

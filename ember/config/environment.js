@@ -1,6 +1,10 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
+  var isEnv = function (environments) {
+    return environments.indexOf(environment) !== -1;
+  };
+
   var ENV = {
     environment: environment,
     baseURL: '/',
@@ -33,6 +37,17 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+  /* now configs */
+  ENV.now = {
+    updateInterval: (function () {
+      var everySecond = 1000;
+      var hourly = 1000 * 60 * 60;
+      return isEnv(['development', 'test']) ? everySecond : hourly;
+    })(),
+    allowOverride: isEnv(['development', 'test']),
+    override: isEnv('development') ? '2014-08-27' : null // last Wednesday in August 2014
+  };
 
   return ENV;
 };

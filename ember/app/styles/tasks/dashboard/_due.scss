@@ -2,21 +2,30 @@
   .due {
     font-size: 1.5em;
     cursor: pointer;
-  }
 
-  .due .when {
-    text-transform: capitalize;
-  }
+    .panel-heading {
+      position: relative;
 
-  .due .count {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30%;
-    line-height: 50px;
-    height: 50px;
-    background-color: lighten($list-group-border, 5%);
-    text-align: center;
-    font-size: 30px;
+      .count {
+        background-color: transparent;
+        display: none; // might be overwhelming for user to show
+      }
+    }
+
+    .when {
+      text-transform: capitalize;
+    }
+
+    .count {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30%;
+      line-height: 50px;
+      height: 50px;
+      background-color: lighten($list-group-border, 5%);
+      text-align: center;
+      font-size: 30px;
+    }
   }
 }
